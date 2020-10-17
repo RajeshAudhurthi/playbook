@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+    - name: update and installing apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: installing packages
+      apt:
+        name: ["php", "libapache2-mod-php", "php-mysql"]
+        state: present
+    - name: restarting apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: copy file from ACS to all nodes 
+      copy: 
+        src: /home/ansible/info.php
+        dest: /var/www/html/info.php 
+    - name: restart apache2 again 
+      service: 
+        name: apache2 
+        state: restarted
