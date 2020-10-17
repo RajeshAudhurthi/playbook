@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install java 8 on ubuntu
+    apt:
+      name: default-jdk
+      update_cache: yes
+      state: present
+  - name: install apache2
+    apt:
+      name: apache2
+      state: present
+  - name: install tomcat8 on ubuntu
+    apt: 
+      name: tomcat8
+      state: present
+  - name: install git 
+    apt:
+      name: git-all
+      state: present
+    when: ansible_os_family == "windows"
+  - name: install tree on ubuntu 
+    apt: 
+      name: tree
+      state: present
+    when: ansible_os_family == "Debian"
+

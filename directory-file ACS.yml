@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: remove directory in all nodes
+    file:
+      path: /home/ansible/rajesh
+      state: directory
+  - name: remove file
+    file:
+      path: /home/ansible/rajesh.txt
+      state: touch
+    
