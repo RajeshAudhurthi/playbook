@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: remove java 8 on ubuntu
+    apt:
+      name: default-jdk
+      update_cache: yes
+      state: absent
+  - name: remove apache2
+    apt:
+      name: apache2
+      state: absent
+  - name: remove tomcat8 on ubuntu
+    apt: 
+      name: tomcat8
+      state: absent
+  - name: remove git 
+    apt:
+      name: git-all
+      state: absent
+    when: ansible_os_family == "Debian"
+  - name: remove tree on ubuntu 
+    apt: 
+      name: tree
+      state: absent
+    when: ansible_os_family == "Debian"
+
