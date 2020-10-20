@@ -15,18 +15,18 @@
     sudo systemctl start httpd.service
     http://your_server_IP_address/
     ```
-## You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
+    You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
     If you see that page, then your web server is now correctly installed.
     The last thing you will want to do is enable Apache to start on boot. Use the following command to do so:
-        ```
-        sudo systemctl enable httpd.service
-        sudo yum install php php-mysql
-        sudo systemctl restart httpd.service
-        sudo vi /var/www/html/info.php
-            <?php phpinfo(); ?>
-        http://your_server_IP_address/info.php
-        ```
-    This page basically gives you information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
+    ```
+    sudo systemctl enable httpd.service
+    sudo yum install php php-mysql
+    sudo systemctl restart httpd.service
+    sudo vi /var/www/html/info.php
+    <?php phpinfo(); ?>
+    http://your_server_IP_address/info.php
+    ```
+This page basically gives you information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
 ## Conclusion
 Now that you have a LAMP stack installed, you have many choices for what to do next. Basically, you’ve installed a platform that will allow you to install most kinds of websites and web software on your server.
 
