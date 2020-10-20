@@ -1,4 +1,5 @@
 ## LAMP server installation in CENTOS manually
+
 1. search 'install lamp in centos'
 2. select the first page in results
 3. follow the documentation
@@ -13,7 +14,8 @@
     or 
     sudo systemctl status httpd
     sudo systemctl start httpd.service
-    http://your_server_IP_address/
+    [click here](http://your_server_IP_address/)
+  
     ```
     You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
     If you see that page, then your web server is now correctly installed.
@@ -24,10 +26,11 @@
     sudo systemctl restart httpd.service
     sudo vi /var/www/html/info.php
     <?php phpinfo(); ?>
-    http://your_server_IP_address/info.php
+    [here](http://your_server_IP_address/info.php)
     ```
-This page basically gives you information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
-## Conclusion
+
+    This page basically gives you information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
+# Conclusion
 Now that you have a LAMP stack installed, you have many choices for what to do next. Basically, you’ve installed a platform that will allow you to install most kinds of websites and web software on your server.
 
         
