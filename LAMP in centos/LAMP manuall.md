@@ -9,12 +9,12 @@
     3. Run the commands
 
         ```
-        sudo yum install httpd -y
-        sudo service httpd status
-        or 
-        sudo systemctl status httpd
-        sudo systemctl start httpd.service
-        http://your_server_IP_address/
+            sudo yum install httpd -y
+            sudo service httpd status
+            or 
+            sudo systemctl status httpd
+            sudo systemctl start httpd.service
+            http://your_server_IP_address/
         ```
             You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
             If you see that page, then your web server is now correctly installed.
