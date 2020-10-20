@@ -15,7 +15,7 @@
         sudo systemctl start httpd.service
         http://your_server_IP_address/
         ```
-    You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
+## You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
     If you see that page, then your web server is now correctly installed.
     The last thing you will want to do is enable Apache to start on boot. Use the following command to do so:
         ```
