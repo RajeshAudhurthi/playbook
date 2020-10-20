@@ -4,18 +4,17 @@
 3. follow the documentation
 
 ## How To Install Linux, Apache, MySQL, PHP (LAMP) stack On CentOS 7
-    1. Launch and login EC2 machine
-    2. install the lamp through the above document
-    3. Run the commands
-      ```
-      sudo yum install httpd -y
-      sudo service httpd status
-      or 
-      sudo systemctl status httpd
-      sudo systemctl start httpd.service
-      http://your_server_IP_address/
-      ```
-      
+1.  Launch and login EC2 machine
+2.  install the lamp through the above document
+3.  Run the commands
+    ```
+    sudo yum install httpd -y
+    sudo service httpd status
+    or 
+    sudo systemctl status httpd
+    sudo systemctl start httpd.service
+    http://your_server_IP_address/
+    ```
 ## You will see the default CentOS 7 Apache web page, which is there for informational and testing purposes.
     If you see that page, then your web server is now correctly installed.
     The last thing you will want to do is enable Apache to start on boot. Use the following command to do so:
