@@ -1,0 +1,25 @@
+---
+- hosts: centos
+  become: yes
+  tasks:
+    - name: Installation of httpd in centos
+      yum: 
+        name: httpd
+        state: present
+    - name: Starting httpd service and enable
+      service: 
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Installing Packages php and php-mysql
+      yum: 
+        name: ["php", "php-mysql"]
+        state: present
+    - name: Restarting httpd service
+      service: 
+        name: httpd
+        state: restarted 
+    - name: copy file from ACS to centos node
+      copy: 
+        src: /home/ansible/info.php
+        dest: /var/www/html/info.php

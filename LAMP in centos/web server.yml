@@ -1,0 +1,18 @@
+- hosts: all 
+  become: yes
+  tasks: 
+  - name: install apache2 on ubuntu 
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+    when:  ansible_os_family == "Debian"
+    tags: 
+     - ubuntu_package
+  - name: install httpd on centos 
+    yum: 
+      name: httpd
+      state: present 
+    when: ansible_os_family == "RedHat"
+    tags:
+     - centos_package 
