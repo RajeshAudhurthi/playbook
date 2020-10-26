@@ -20,6 +20,91 @@ Next, change to the /tmp directory on your server. This is a good directory to d
 ```
 cd /tmp
 curl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.59/bin/apache-tomcat-8.5.59.tar.gz
+sudo mkdir /opt/tomcat
+sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
 
 ```
+## Step 4: Update Permissions
+```
+cd /opt/tomcat
+sudo chgrp -R tomcat /opt/tomcat
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+
+```
+## Step 5: Create a systemd Service File
+`sudo nano /etc/systemd/system/tomcat.service
+`
+Paste the following contents into your service file
+```
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+```
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
+sudo systemctl status tomcat
+
+
+http://server_domain_or_IP:8080
+
+```
+If you were able to successfully accessed Tomcat, now is a good time to enable the service file so that Tomcat automatically starts at boot:
+
+`sudo systemctl enable tomcat
+`
+## Step 7: Configure Tomcat Web Management Interface
+```
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+
+```
+`<user username="admin" password="password" roles="manager-gui,admin-gui"/>` add this line above the last line.
+
+```
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+
+```
+Inside, comment out the IP address restriction to allow connections from anywhere. Alternatively, if you would like to allow access only to connections coming from your own IP address, you can add your public IP address to the list:
+```
+<!--<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
+```
+`sudo systemctl restart tomcat
+`
+## Step 8: Access the Web Interface
+
+http://server_domain_or_IP:8080
+
+# **Conclusion**
+Your installation of Tomcat is complete! Your are now free to deploy your own Java web applications!
+
+
+
 
