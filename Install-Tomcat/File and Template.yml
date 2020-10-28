@@ -1,0 +1,18 @@
+- hosts: all
+  become: yes
+  vars:
+    package_name: Webserver
+  tasks:
+  - name: create directory in centos
+    file: 
+      path: /home/ansible
+      state: directory
+    when: ansible_os_family == "RedHat"
+  - name: copy file from ACS to all nodes
+    copy:
+      src: /home/ansible/file
+      dest: /home/ansible/static
+  - name: copy template from ACS to all nodes
+    copy: 
+      src: /home/ansible/dynamic.j2
+      dest: /home/ansible/dynamic
