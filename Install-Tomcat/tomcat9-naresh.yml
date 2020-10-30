@@ -1,0 +1,70 @@
+- hosts: all 
+  become: yes 
+  vars: 
+    username: devops
+    password: aws 
+    appserver: tomcat
+  tasks: 
+  - name: install java and update packages
+    apt: 
+      name: default-jdk
+      update_cache: yes
+      state: present
+  - name: create user tomcat
+    group:
+      name: "{{ appserver }}"
+      state: present
+  - name: create user tomcat in tomcat group
+    user: 
+        name: "{{ appserver }}"
+        state: present
+        home: /opt/tomcat
+        shell: /bin/false
+        group: "{{ appserver }}"
+  - name: create directory
+    file:
+        path: /opt/tomcat
+        state: directory
+  - name: download tomcat binaries and extract in /opt/tomcat
+    unarchive:
+      src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
+      dest: /opt/tomcat/
+      remote_src: yes
+      extra_opts: 
+      - --strip-components=1 
+  - name: update permissions
+    shell: | 
+      sudo  chgrp -R tomcat /opt/tomcat
+      sudo  chmod -R g+r /opt/tomcat/conf
+      sudo  chmod g+x /opt/tomcat/conf
+      sudo  chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/  
+  - name: copy service file from ACS to all nodes 
+    copy: 
+      src: /home/ansible/service
+      dest: /etc/systemd/system/tomcat.service
+  - name: deamon reload
+    systemd:
+        daemon_reload: yes
+  - name: start tomcat 
+    systemd:
+      state: started
+      name: "{{ appserver }}"
+      enabled: yes 
+  - name: copy template into all nodes
+    template: 
+      src: /home/ansible/tomcat-users.xml.j2
+      dest: /opt/tomcat/conf/tomcat-users.xml 
+  - name: Manager app
+    copy: 
+      src: /home/ansible/context.xml 
+      dest: /opt/tomcat/webapps/manager/META-INF/context.xml
+  - name: host manager app 
+    copy: 
+      src: /home/ansible/context.xml
+      dest: /opt/tomcat/webapps/host-manager/META-INF/context.xml 
+  - name: restart tomcat 
+    systemd:
+        state: restarted
+        name: tomcat
+
+  

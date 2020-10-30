@@ -1,7 +1,7 @@
 ## Step 1 — Install Java
 ```
 sudo apt update
-sudo apt install default-jdk
+sudo apt install default-jdk -y
 
 ```
 ## Step 2 — Create Tomcat User
@@ -70,21 +70,25 @@ sudo systemctl enable tomcat
 ## Step 5 — Configure Tomcat Web Management Interface
 `sudo nano /opt/tomcat/conf/tomcat-users.xml`
 
-<tomcat-users . . .>
+```
     <user username="admin" password="password" roles="manager-gui,admin-gui"/>
-</tomcat-users>
+
+```
+
 ```
 sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
 sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
 ```
-Inside, comment out the IP address restriction to allow connections from anywhere.
+Inside, comment out the IP address restriction to allow connections from anywhere
 
+```
 <Context antiResourceLocking="false" privileged="true" >
   <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve"
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
 </Context>
 
+```
 `sudo systemctl restart tomcat`
 
 ## Step 8—Access the Web Interface

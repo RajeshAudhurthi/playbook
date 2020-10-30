@@ -1,0 +1,5 @@
+- hosts: all
+  become: yes
+  roles: 
+   - LAMP
+  when: ansible_os_family == "Debian"

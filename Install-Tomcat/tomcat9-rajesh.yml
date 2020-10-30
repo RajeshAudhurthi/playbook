@@ -1,0 +1,68 @@
+- hosts: all
+  become: yes
+  vars:
+    username: devops
+    password: password
+    appserver: tomcat
+  tasks:
+    - name: install java and update
+      apt:
+        name: default-jdk
+        update_cache: yes
+        state: present
+    - name: Create tomcat group
+      group:
+        name: "{{ appserver }}"
+        state: present
+    - name: Add the user tomcat in tomcat group
+      user: 
+        name: "{{ appserver }}"
+        state: present
+        shell: /bin/false
+        group: "{{ appserver }}"
+        home: /opt/tomcat
+    - name: create directory 
+      file:
+        path: /opt/tomcat
+        state: directory
+    - name: download binaries and extract to /opt/tomcat
+      unarchive:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.39/bin/apache-tomcat-9.0.39.tar.gz
+        dest: /opt/tomcat
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+    - name: update permissions
+      shell: | 
+        chgrp -R tomcat /opt/tomcat
+        chmod -R g+r /opt/tomcat/conf
+        chmod g+x /opt/tomcat/conf
+        chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/
+    - name: copy service file into all nodes
+      copy:
+        src: /home/ansible/service
+        dest: /etc/systemd/system/tomcat.service
+    - name: reload the systemd daemon
+      systemd:
+        daemon_reload: yes
+    - name: Start the service tomcat and enable it
+      service:
+        name: "{{ appserver }}"
+        state: started
+        enabled: yes
+    - name: copy tempalte from ACS to all nodes
+      template: 
+        src: /home/ansible/tomcat-users.xml.j2
+        dest: /opt/tomcat/conf/tomcat-users.xml
+    - name: manager app
+      copy: 
+        src: /home/ansible/context.xml
+        dest: /opt/tomcat/webapps/manager/META-INF/context.xml
+    - name: host manger app
+      copy:
+        src: /home/ansible/context.xml
+        dest: /opt/tomcat/webapps/host-manager/META-INF/context.xml
+    - name: restart the service tomcat
+      service:
+        name: "{{ appserver }}"
+        state: restarted
