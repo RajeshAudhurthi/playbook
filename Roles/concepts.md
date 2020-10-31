@@ -29,7 +29,7 @@
        3. inventory file
        4. group/host vars
        5. roles 
-     * note: variable priority 
+     * note: variable priority or precedence 
    10. install tomcat manually 
    11. write playbook for tomcat
    12. ansible galaxy roles  
