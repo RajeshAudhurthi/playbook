@@ -1,0 +1,55 @@
+- hosts: all 
+  become: yes 
+  vars: 
+    webserver_centos: httpd 
+    webserver_ubuntu: apache2
+  tasks: 
+  - name: install httpd in centos 
+    yum:
+      name: "{{ webserver_centos }}"
+      state: present 
+    when: ansible_os_family == "RedHat"
+  - name: update packages and install apache2
+    apt:
+      name: "{{ webserver_ubuntu }}"
+      state: present
+      update_cache: yes 
+    when: ansible_os_family == "Debian"
+  - name: install packgaes php libapache2-mod-php php-mysql
+    apt:
+        name: "{{ item }}"
+        state: present
+    loop:
+       - php
+       - libapache2-mod-php
+       - php-mysql
+    when: ansible_os_family == "Debian" 
+  - name: start httpd service and enable 
+    service: 
+      name: "{{ webserver_centos }}"
+      state: started 
+      enabled: yes 
+    when: ansible_os_family == "RedHat"
+  - name: install php and php-mysql 
+    yum: 
+      name: "{{ item }}"
+      state: present 
+    with_items: 
+        - php
+        - php-mysql 
+    when: ansible_os_family == "RedHat"
+  - name: restart httpd service and enable 
+    service: 
+      name:  "{{ webserver_centos }}"
+      state: restarted
+    when: ansible_os_family == "RedHat"
+  - name: restart apache2 service 
+    service:
+       name:  "{{ webserver_ubuntu }}"
+       state: restarted 
+    when: ansible_os_family == "Debian" 
+  - name: copy file from ACS to node 
+    copy: 
+      src: /home/ansible/info.php
+      dest: /var/www/html/info.php
+    when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
