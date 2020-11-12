@@ -1,0 +1,240 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Here are some details about the template for VPC.",
+    "Resources": {
+        "LogicalVPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "192.168.0.0/16",
+                "EnableDnsHostnames": true,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-vpc-network"
+                    }
+                ]
+            }
+        },
+        "LogicalIGW": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-internet-gateway"
+                    }
+                ]
+            }
+        },
+        "AttachGateway": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "InternetGatewayId": {
+                    "Ref": "LogicalIGW"
+                }
+            }
+        },
+        "LogicalPublicRT": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-public-RT"
+                    }
+                ]
+            }
+        },
+        "MyRoute": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "LogicalPublicRT"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "LogicalIGW"
+                }
+            }
+        },
+        "LogicalPrivateRT": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-private-RT"
+                    }
+                ]
+            }
+        },
+        "logicalpublicsubnet": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "CidrBlock": "192.168.0.0/24",
+                "AvailabilityZone": "us-east-2a",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-public-SN"
+                    }
+                ]
+            }
+        },
+        "mySNAssociationpublic": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "logicalpublicsubnet"
+                },
+                "RouteTableId": {
+                    "Ref": "LogicalPublicRT"
+                }
+            }
+        },
+        "logicalprivatesubnet": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "CidrBlock": "192.168.1.0/24",
+                "AvailabilityZone": "us-east-2b",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "raj-private-SN"
+                    }
+                ]
+            }
+        },
+        "mySNAssociationprivate": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "logicalprivatesubnet"
+                },
+                "RouteTableId": {
+                    "Ref": "LogicalPrivateRT"
+                }
+            }
+        },
+        "openall": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "VpcId": {
+                    "Ref": "LogicalVPC"
+                },
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "-1",
+                        "FromPort": 0,
+                        "ToPort": 0,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "SecurityGroupEgress": [
+                    {
+                        "IpProtocol": "-1",
+                        "FromPort": 0,
+                        "ToPort": 0,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            }
+        },
+        "appserver": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-0dd9f0e7df0f0a138",
+                "InstanceType": "t2.micro",
+                "KeyName": "vpc-ec2-key",
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": true,
+                        "DeviceIndex": 0,
+                        "GroupSet": [
+                            {
+                                "Ref": "openall"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "logicalpublicsubnet"
+                        }
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "AppServer"
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "#!/bin/bash",
+                                "sudo apt-get update",
+                                "sudo apt-get install tomcat8 -y"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "webserver": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-0dd9f0e7df0f0a138",
+                "InstanceType": "t2.micro",
+                "KeyName": "vpc-ec2-key",
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": true,
+                        "DeviceIndex": 0,
+                        "GroupSet": [
+                            {
+                                "Ref": "openall"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "logicalpublicsubnet"
+                        }
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "webServer"
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "\n",
+                            [
+                                "#!/bin/bash",
+                                "sudo apt-get update",
+                                "sudo apt-get install apache2 -y"
+                            ]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

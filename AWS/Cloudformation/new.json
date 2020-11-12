@@ -1,0 +1,169 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Here are some details about the template.",
+    "Parameters": {
+        "pmvpcCIDRBLOCK": {
+            "Description": "Select the desired cidr block",
+            "Type": "String",
+            "Default": "192.168.0.0/16"
+        },
+        "pmpublicSNCIDRBLOCK": {
+            "Description": "Select the desired cidr block",
+            "Type": "String",
+            "Default": "192.168.0.0/24"
+        },
+        "pmprivateSNCIDRBLOCK": {
+            "Description": "Select the desired cidr block",
+            "Type": "String",
+            "Default": "192.168.1.0/24"
+        },
+        "pmpublicAZ": {
+            "Description": "selct the az for public subnet",
+            "Type": "AWS::EC2::AvailabilityZone::Name"
+        },
+        "pmprivateAZ": {
+            "Description": "selct the az for private subnet",
+            "Type": "AWS::EC2::AvailabilityZone::Name"
+        }
+    },
+    "Resources": {
+        "myVPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": {
+                    "Ref": "pmvpcCIDRBLOCK"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "myVPC"
+                    }
+                ]
+            }
+        },
+        "myIGW": {
+            "Type": "AWS::EC2::InternetGateway",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "myIGW"
+                    }
+                ]
+            }
+        },
+        "AttachGateway": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "myVPC"
+                },
+                "InternetGatewayId": {
+                    "Ref": "myIGW"
+                }
+            }
+        },
+        "mypubRT": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "myVPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mypubRT"
+                    }
+                ]
+            }
+        },
+        "mypriRT": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "myVPC"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mypriRT"
+                    }
+                ]
+            }
+        },
+        "myROUTE": {
+            "Type": "AWS::EC2::Route",
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "mypubRT"
+                },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "myIGW"
+                }
+            }
+        },
+        "mypublicSN": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Ref": "pmpublicAZ"
+                },
+                "VpcId": {
+                    "Ref": "myVPC"
+                },
+                "CidrBlock": {
+                    "Ref": "pmpublicSNCIDRBLOCK"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "mypublicSN"
+                    }
+                ]
+            }
+        },
+        "mypubRTAssoc": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "mypublicSN"
+                },
+                "RouteTableId": {
+                    "Ref": "mypubRT"
+                }
+            }
+        },
+        "myprivateSN": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "AvailabilityZone": {
+                    "Ref": "pmprivateAZ"
+                },
+                "VpcId": {
+                    "Ref": "myVPC"
+                },
+                "CidrBlock": {
+                    "Ref": "pmprivateSNCIDRBLOCK"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "myprivateSN"
+                    }
+                ]
+            }
+        },
+        "mypriRTAssoc": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": {
+                    "Ref": "myprivateSN"
+                },
+                "RouteTableId": {
+                    "Ref": "mypriRT"
+                }
+            }
+        }
+    }
+}
