@@ -44,7 +44,7 @@
       * hit install pluggins
       * enter the details and continue
       * start using jenkins
-* ## create java project 
+## create java project 
    1. clone source code 
       ```
       git clone https://github.com/wakaleo/game-of-life.git

@@ -12,6 +12,7 @@
       2. 95% of Resource are consume by Application
       3. containers run on Isolation 
 ## Monolithic Application
+
 ## Micro Service: complte application break it down into mutliple pieces 
    1. each piece called as Micro service
    2. we deploy microservice in containers
