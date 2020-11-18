@@ -8,7 +8,7 @@
      Q) how to do provisioner by using ansible
          1. take remote exec and install ansible 
          2. run playbook
-#### destroy one resource 
+## destroy one resource 
      1. if you run terraform destroy -- destroy hole in infra 
      2. destroy one single resource 
         ```
