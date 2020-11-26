@@ -34,8 +34,8 @@
       4. push to remote repository  from local repository
          1. very first time add global config 
             ```
-            git config --global user.name "Naresh" 
-            git config --global user.email "abbanapuri5354@gmail.com"
+            git config --global user.name "RajeshAudhurthi" 
+            git config --global user.email "raajesh404@gmail.com"
             ````
          2. add remote path to local repository
             ```
