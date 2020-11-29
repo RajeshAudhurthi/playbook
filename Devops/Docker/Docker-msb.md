@@ -45,12 +45,12 @@ CMD ["catalina.sh","run"]
 10. ip address:port no./gameoflife ---------------web Page.
 
 
-## Dockerfile for openmrs project
+## Dockerfile for another game of life 
 
 
-FROM maven:3-openjdk-8 as build
-RUN apt-get update && apt-get install git -y && git clone https://github.com/openmrs/openmrs-core.git && cd openmrs-core && mvn package
+FROM maven:3-openjdk-8
+RUN apt-get update && apt-get install git -y && git clone https://github.com/zsoltk/GameOfLife.git && cd GameOfLife && mvn package
 FROM tomcat:8
-COPY --from=build openmrs-core/webapp/target/openmrs.war /usr/local/tomcat/webapps
+COPY --from=0 game-of-life/gameoflife-web/target/gameoflife.war /usr/local/tomcat/webapps
 EXPOSE 8080
 CMD ["catalina.sh","run"]
