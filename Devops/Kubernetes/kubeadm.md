@@ -22,13 +22,25 @@
    3. Run ```Kubeadm init``` 
 
 Token: 
-kubeadm join 172.31.18.209:6443 --token 2uhtui.vqej0p66n0ndk5ma \
-    --discovery-token-ca-cert-hash sha256:d953c15ede4fbd13c3da096a05752faaaef1fdb5c8fddc4b445d619586eea6b4
+kubeadm join 172.31.0.194:6443 --token ugtgc4.pchnj1kg0jimtv4t \
+    --discovery-token-ca-cert-hash sha256:9622bb5ea8fe581dde0a9db0b202e358ea38e88d9b93652b91557524915fa9ec
 
 ## Worker Node: 
   1. Install CRI
   2. Install Kubeadm, Kubelet, Kubectl
   3. Run `kubeadm join`  
+  4. To start using your cluster, you need to run the following as a regular user:
+
+      ```
+        mkdir -p $HOME/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+      ```
+    Alternatively, if you are the root user, you can run:
+
+     `export KUBECONFIG=/etc/kubernetes/admin.conf`
+
 
 # install CRI
 
