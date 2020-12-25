@@ -3,7 +3,19 @@
    2. Instance types 
        * Master Node:  T2.medium 
        * Worker Nodes: T2.micro * 3
-   
+
+## Control-plane node(s)
+**Protocol|	Direction | Port Range | Purpose	               | Used By**
+      TCP | Inbound   | 6443*      | Kubernetes API server   | All
+      TCP | Inbound   | 2379-2380  | etcd server client API  | kube-apiserver, etcd
+      TCP | Inbound   | 10250      | Kubelet API             | Self, Control plane
+      TCP | Inbound   | 10251      | kube-scheduler          | Self
+      TCP | Inbound   | 10252      | kube-controller-manager | Self
+## Worker node(s)
+**Protocol | Direction | Port Range  | Purpose             | Used By**
+      TCP  | Inbound   | 10250       | Kubelet API         | Self, Control plane
+      TCP  | Inbound   | 30000-32767 | NodePort Services** | All
+        
 ## Master Setup: 
    1. Install CRI
    2. Install Kubeadm, Kublet, Kubectl
@@ -16,7 +28,7 @@ kubeadm join 172.31.18.209:6443 --token 2uhtui.vqej0p66n0ndk5ma \
 ## Worker Node: 
   1. Install CRI
   2. Install Kubeadm, Kubelet, Kubectl
-  3. Run kubeadm join  
+  3. Run `kubeadm join`  
 
 # install CRI
 
@@ -64,6 +76,10 @@ EOF
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+
+**Restarting the kubelet is required**
+systemctl daemon-reload
+systemctl restart kubelet
 
 # install network drivers choose weave net
 
