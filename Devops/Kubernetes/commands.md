@@ -18,4 +18,9 @@
 * kubectl apply -f pod.yml
 * kubectl delete pods -l appser=pod
 * service nginx status
+* echo $?
+    0 if prev cmd success
+    127 if prev cmd fail
 * 
+
+
