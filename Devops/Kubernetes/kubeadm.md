@@ -21,15 +21,7 @@
    2. Install Kubeadm, Kublet, Kubectl
    3. Run ```Kubeadm init``` 
 
-Token: 
-kubeadm join 172.31.0.194:6443 --token ugtgc4.pchnj1kg0jimtv4t \
-    --discovery-token-ca-cert-hash sha256:9622bb5ea8fe581dde0a9db0b202e358ea38e88d9b93652b91557524915fa9ec
-
-## Worker Node: 
-  1. Install CRI
-  2. Install Kubeadm, Kubelet, Kubectl
-  3. Run `kubeadm join`  
-  4. To start using your cluster, you need to run the following as a regular user:
+   4. To start using your cluster, you need to run the following as a regular user:  
 
       ```
         mkdir -p $HOME/.kube
@@ -40,6 +32,16 @@ kubeadm join 172.31.0.194:6443 --token ugtgc4.pchnj1kg0jimtv4t \
     Alternatively, if you are the root user, you can run:
 
      `export KUBECONFIG=/etc/kubernetes/admin.conf`
+
+
+## Worker Node: 
+  1. Install CRI
+  2. Install Kubeadm, Kubelet, Kubectl
+  3. Run `kubeadm join`  
+  
+  Token: 
+kubeadm join 172.31.0.194:6443 --token ugtgc4.pchnj1kg0jimtv4t \
+    --discovery-token-ca-cert-hash sha256:9622bb5ea8fe581dde0a9db0b202e358ea38e88d9b93652b91557524915fa9ec
 
 
 # install CRI
@@ -74,7 +76,7 @@ systemctl daemon-reload
 
 systemctl restart docker
 
-#  Install Kubeadm, Kubelet, Kubectl
+# Install Kubeadm, Kubelet, Kubectl
 
 
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
@@ -89,10 +91,10 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-**Restarting the kubelet is required**
+**Restarting the kubelet is required for Master Node**
 systemctl daemon-reload
 systemctl restart kubelet
 
-# install network drivers choose weave net
+# install network drivers in Master Node choose weave net
 
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"

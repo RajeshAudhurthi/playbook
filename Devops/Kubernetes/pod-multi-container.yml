@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: appserver-tomcat   ## Pod Name
+  labels: 
+    appser: pod
+spec: 
+  containers: 
+   - image: tomcat:8
+     name: app-container  ## container name 
+     ports: 
+     - containerPort: 8080
+       protocol: TCP 
+       name: appport 
+   - image: nginx 
+     name: web-container ## container name
+     ports:
+     - containerPort: 80
+       protocol: TCP 
+       name: appport
