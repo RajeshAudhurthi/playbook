@@ -21,6 +21,17 @@
 * echo $?
     0 if prev cmd success
     127 if prev cmd fail
-* 
+* kubectl get svc or service
+* kubectl get deploy
+* kubectl get rs
+* kubectl scale --replicas=1 -f deploy.yml 
+* kubectl set image deployment/deployment-app appserver=raajesh404/gameoflife:latest --record=true
+* kubectl set image deployment/deployment-app appserver=abbanapurinaresh/gol:latest --record
+
+* kubectl rollout status deployment/deployment-app
+
+* kubectl rollout undo deployment.v1.apps/deployment-app
+
+
 
 

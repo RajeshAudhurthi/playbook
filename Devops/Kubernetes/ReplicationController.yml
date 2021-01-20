@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata: 
   name: rc-app  ## RC name 
 spec: 
-  replicas: 5
+  replicas: 5    ## no. of pods
   selector: 
       app: gol
   template:      ## pod definition 

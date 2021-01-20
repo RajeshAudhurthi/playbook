@@ -6,3 +6,27 @@ spec:
   containers:
   - name: appserver
     image: tomcat:8
+
+
+
+apiVersion: core/v1
+  kind: Pod
+  metadata:                 ## object
+    name: appserver-pod     ## pod name
+    labels:                 ## object
+      pod: tomcat
+  spec:                     ## object 
+    containers:             ## list
+    - image: tomcat:8
+      name: app-server      ## container name
+      ports:                ## list
+      - containerPort: 8080
+        name: tomcat port
+        protocol: TCP
+    - image: nginx
+      name: web-server      ## container name
+      ports: 
+      - containerPort: 8080
+        name: nginx port
+        protocol: TCP
+      
