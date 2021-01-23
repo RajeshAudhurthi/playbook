@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  # name for deployment webserver
+  name: deployment-webserver
+  labels: 
+    deploy: webserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      web: nginx
+  template:
+    metadata:
+      # pod name
+      name: pod-web
+      labels:
+        web: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: webserver
+        ports:
+        - containerPort: 80
+        
+    

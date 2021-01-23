@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: deployment-app  
+  # unique name for deployemnt appserver
+  name: deployment-appserver 
   labels: 
-    deploy: app 
+    deploy: appserver
 spec:
   progressDeadlineSeconds: 3600 
   replicas: 3
@@ -12,12 +13,13 @@ spec:
       app: deploy
   template:      
     metadata: 
+      # pod name
       name: pod-app
       labels: 
         app: deploy
     spec: 
       containers: 
-        - image: tomcat:8 
-          name: appserver
-          ports: 
-          - containerPort: 8080
+      - image: tomcat:8 
+        name: appserver
+        ports: 
+        - containerPort: 8080

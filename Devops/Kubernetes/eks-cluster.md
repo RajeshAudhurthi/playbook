@@ -1,21 +1,21 @@
 eksctl create cluster \
---name eks-2022 \
---version 1.18 \
---region us-west-1 \
---nodegroup-name linux-nodes \
---nodes 1 \                                      
---nodes-min 1 \
+--name eks-2301 \
+--version 1.18 \      
+--region ap-south-1 \
+--nodegroup-name managed-linux-nodes \
+--nodes 2 \                                      
+--nodes-min 2 \
 --nodes-max 2 \
 --with-oidc \
 --ssh-access \
---ssh-public-key eks \
+--ssh-public-key eks-new \
 --managed
 
 
 --------------------------------------------------------------------------------
 eksctl create cluster \
- --name <my-cluster> \
- --version <1.18> \
+ --name eksctl-2101 \
+ --version 1.18 \
  --with-oidc \
  --without-nodegroup
 
@@ -31,3 +31,13 @@ eksctl create nodegroup \
   --ssh-access \
   --ssh-public-key <my-public-key.pub> \
   --managed
+
+
+
+  eksctl create cluster \
+--name my-2001 \
+--region us-east-2 \
+--with-oidc \
+--ssh-access \
+--ssh-public-key eks-raj \
+--managed

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-cip
+spec:
+  type: ClusterIP
+  selector:
+    app: deploy
+    web: nginx
+  ports:
+  - port: 80
+    targetPort: 8080
+

@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world-ingress  
+  annotations:  
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: a3a7eb9c0901e4c5ebd45af5bdd9bbf1-650530230.ap-south-1.elb.amazonaws.com
+    http:
+      paths:
+      - backend:
+          serviceName: deployment-webserver
+          servicePort: 80  
