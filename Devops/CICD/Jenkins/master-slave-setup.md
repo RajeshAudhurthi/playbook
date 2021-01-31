@@ -38,5 +38,4 @@
    1. go to master as jenkins user and copy keys into slave
         ```ssh-copy-id userslave@privateip```
    2. do setup on jenkins (manage jenkins --> managenodes -->new node)
-   ![click](F:\Rajesh\Screenshots\Screenshot (31))
    
