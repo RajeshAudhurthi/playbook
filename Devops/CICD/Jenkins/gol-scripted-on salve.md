@@ -15,4 +15,29 @@ node ('Maven-slave'){
     // some block
     archive 'game-of-life/gameoflife-web/target/*.war'
 }
+stage('Static Code analysis'){
+       // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
+    withSonarQubeEnv('sonar') {
+      // requires SonarQube Scanner for Maven 3.2+
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+    }
+ }
+ stage('Artifactory'){
+    sh "curl -u admin:Jfrog#77 -T /home/maven/workspace/CI-pipeline/gameoflife-web/target/*.war http://http://3.6.126.71:8082/artifactory/gol/gameoflife.war"
+}
+}
+
+
+
+
+
+
+###
+node('ansible') {
+    stage('clone the playbook'){
+        git 'http://ansible-playbook.git'
+    }
+    stage('deploy'){
+        sh 'ansible-playbook -i myinv playbook.yml'
+    }
 }

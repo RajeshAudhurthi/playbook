@@ -10,28 +10,76 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
 ## Sonarqube Installation and integration
    
    1. install sonarqube 
-      1. launch ubuntu machine(t2.medium) and login machine 
+      launch ubuntu machine(t2.medium) and login machine -**9000** port
             ```
-            /etc/apt/sources.list: deb [trusted=yes] http://downloads.sourceforge.net/project/sonar-pkg/deb  binary/
-
-            sudo apt-get update
-            sudo apt-get install openjdk-8-jdk
-            sudo apt-get install sonar=6.7.4
-            sudo service sonar start
+            a. login as root user and open the below file
+               sudo -i
+               vi /etc/apt/sources.list
+            b. Then copy the below line and save  
+               deb [trusted=yes] http://downloads.sourceforge.net/project/sonar-pkg/deb  binary/
+            c. Run these commands
+               sudo apt-get update
+               sudo apt-get install openjdk-8-jdk -y
+               sudo apt-get install sonar=6.7.4
+               sudo systemctl start sonar
+               sudo systemctl enable sonar
             ```
    2. sonarqube integrate jenkins 
-   token -  a8be4dd53b335c290036728f983015d5e31632e9 
-      1. install plugin (sonarqube)
+      login to sonarqube - ip:9000
+      username: admin
+      password: admin
+      give any name (Sonar here) copy the token
+      Sonar: 42822300487173600996fff69a8ea9175d7c2b51
+      select java and maven
+   3. Login to Jenkins server
+      click on manage jenkins-->manage plugins 
+      1. install plugin (sonarqube scanner)
       2. configure system 
+   3. defaults
+      
 
 ## Jfrog artifactory 
    1. we can store artifcats in jfrog
-   2. install jfrog [click here](https://websiteforstudents.com/how-to-install-jfrog-artifactory-on-ubuntu-18-04-16-04/)
+   2. install jfrog [click here](https://websiteforstudents.com/how-to-install-jfrog-artifactory-on-ubuntu-18-04-16-04/)  ---ports **8081 and 8082**
+```
+      sudo apt update
+      sudo apt dist-upgrade -y
+      sudo apt autoremove
+      sudo apt update
+      sudo apt-get install openjdk-8-jdk openjdk-8-doc -y
+         java -version
+         Output:
+         openjdk version "1.8.0_242"
+         OpenJDK Runtime Environment (build 1.8.0_242-8u242-b08-0ubuntu3~18.04-b08)
+         OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)
+      sudo apt install wget software-properties-common
+      wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | apt-key add -
+      sudo add-apt-repository "deb [arch=amd64] https://jfrog.bintray.com/artifactory-debs $(lsb_release -cs) main"
+
+      sudo apt update
+      sudo apt install jfrog-artifactory-oss
+      
+      systemctl stop artifactory.service
+      systemctl start artifactory.service
+      systemctl enable artifactory.service
+      systemctl status artifactory.service
+
+```      
    3. jfrog integrate jenkins 
-   4. go manage jenkins 
+   4. defaults
+      username: admin
+      password: password
+
+   5. Go to Manage Jenkins --> Manage Plugins
        1. install plugin (manage plugins) (artifactory) 
        2. configure system (artifactory)
-
+            **Jfrog**:
+            Click on `Add Artifactory Server`
+            server id: any name
+            URL: {public-ip}:8081/artifactory
+            username: admin
+            password: 
+       3. click on Test Connection
 
 
 ## free style 
