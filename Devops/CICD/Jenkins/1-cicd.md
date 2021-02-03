@@ -38,8 +38,10 @@
 
       * login as root user
          * sudo -i
-      * cat copied path
+      * cat copied path 
+         `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
          * this will displays the admin password, copy it
+            4fc87db873134268bf77f3b4790c138f
       * paste in the browser page and continue
       * hit install pluggins
       * enter the details and continue
@@ -47,9 +49,14 @@
 ## create java project 
    1. clone source code 
       ```
+      mkdir gol
+      cd gol
       git clone https://github.com/wakaleo/game-of-life.git
+      cd game-of-life
+      
       ```
-   2. build code using maven (install maven)```sudo apt-get install maven -y```
+   2. build code using maven (install maven)
       ```
+      sudo apt-get install maven -y
       mvn package
       ``` 

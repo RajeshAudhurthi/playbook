@@ -49,3 +49,6 @@
       
 ## Note: 
   1. get_url module in ansible
+
+
+  scp -i Jenkins-Mumbai.pem ec2-13-233-41-195.ap-south-1.compute.amazonaws.com:/home/ubuntu/gol/game-of-life/gameoflife-web/target/gameoflife.war ~/Desktop

@@ -23,7 +23,7 @@ stage('Static Code analysis'){
     }
  }
  stage('Artifactory'){
-    sh "curl -u admin:Jfrog#77 -T /home/maven/workspace/CI-pipeline/gameoflife-web/target/*.war http://http://3.6.126.71:8082/artifactory/gol/gameoflife.war"
+    sh "curl -u admin:Jfrog#77 -T /home/maven/workspace/ci-scripted2/game-of-life/gameoflife-web/target/*.war http://65.0.21.204:8082/artifactory/gol/gameoflife.war"
 }
 }
 

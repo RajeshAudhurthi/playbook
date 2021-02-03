@@ -20,7 +20,7 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
             c. Run these commands
                sudo apt-get update
                sudo apt-get install openjdk-8-jdk -y
-               sudo apt-get install sonar=6.7.4
+               sudo apt-get install sonar=6.7.4 -y
                sudo systemctl start sonar
                sudo systemctl enable sonar
             ```
@@ -29,7 +29,7 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
       username: admin
       password: admin
       give any name (Sonar here) copy the token
-      Sonar: 42822300487173600996fff69a8ea9175d7c2b51
+      sonar: 7533d2e33d94f9ce897e4003f575e311b9b80dda
       select java and maven
    3. Login to Jenkins server
       click on manage jenkins-->manage plugins 
@@ -37,6 +37,8 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
       2. configure system 
    3. defaults
       
+      curl -v -X GET http://http://52.66.249.128:8080/crumbIssuer/api/json --user Jenkins:Jenkins
+Djenkins.model.Jenkins.crumbIssuerProxyCompatibility=true
 
 ## Jfrog artifactory 
    1. we can store artifcats in jfrog
@@ -53,6 +55,7 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
          OpenJDK Runtime Environment (build 1.8.0_242-8u242-b08-0ubuntu3~18.04-b08)
          OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)
       sudo apt install wget software-properties-common
+      sudo -i
       wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://jfrog.bintray.com/artifactory-debs $(lsb_release -cs) main"
 
@@ -61,11 +64,13 @@ Its an official SonarQube Scanner used to start code analysis based on the plugi
       
       systemctl stop artifactory.service
       systemctl start artifactory.service
+      ........this takes time...
       systemctl enable artifactory.service
       systemctl status artifactory.service
 
 ```      
-   3. jfrog integrate jenkins 
+   3. login into machine
+      jfrog integrate jenkins 
    4. defaults
       username: admin
       password: password
