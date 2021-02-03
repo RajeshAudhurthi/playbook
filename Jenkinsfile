@@ -1,4 +1,4 @@
-node ('Maven-slave'){
+node {
     stage('scm') {
     // some block
     sh 'rm -rf game-of-life && git clone https://github.com/wakaleo/game-of-life.git'
