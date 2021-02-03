@@ -5,7 +5,7 @@ node {
 }
     stage('build from maven') {
     // some block
-    sh 'mvn package'
+    sh 'cd game-of-life && mvn package'
 }
     stage('Junit results') {
     // some block
