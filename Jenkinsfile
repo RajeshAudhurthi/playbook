@@ -19,8 +19,7 @@ stage('Static Code analysis'){
        // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
     withSonarQubeEnv('sonar') {
       // requires SonarQube Scanner for Maven 3.2+
-      sh 'mvn sonar:sonar -Dsonar.host.url=http://52.66.250.126:9000 
-  -Dsonar.login=7533d2e33d94f9ce897e4003f575e311b9b80dda'
+      sh 'mvn sonar:sonar -Dsonar.host.url="http://52.66.250.126:9000" -Dsonar.login=7533d2e33d94f9ce897e4003f575e311b9b80dda'
     }
  }
 }
