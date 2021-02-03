@@ -19,7 +19,12 @@ stage('Static Code analysis'){
        // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
     withSonarQubeEnv('sonar') {
       // requires SonarQube Scanner for Maven 3.2+
+<<<<<<< HEAD
       sh 'cd game-of-life && mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+=======
+      sh '''cd game-of-life
+mvn sonar:sonar -Dsonar.host.url="http://52.66.250.126:9000" -Dsonar.login=7533d2e33d94f9ce897e4003f575e311b9b80dda'''
+>>>>>>> b3c07ef40595d7c43ef8b226b8a460a4e0a987a9
     }
  }
 stage('Artifactory'){
