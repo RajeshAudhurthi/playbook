@@ -34,7 +34,7 @@ git 'https://github.com/RajeshAudhurthi/game_of_life.git'
 
 }
 stage('ansible-playbook'){
-sh 'ansible-playbook apply gol.yml'
+sh 'ansible-playbook gol.yml'
 
 }
 }
