@@ -1,7 +1,8 @@
 # Jenkins Master-Slave
 ## Master
+
     1. install jenkins server , login as root user `sudo -i`
-    2. assign sudo permission ```visudo```
+    2. assign sudo permission `visudo`
         * add this line `jenkins ALL=(ALL:ALL) NOPASSWD: ALL`
         * ctrl+x then y and enter            
     3. enable password base authentication ```vi /etc/ssh/sshd_config``` 
@@ -31,11 +32,21 @@
         * add this line `maven ALL=(ALL:ALL) NOPASSWD: ALL`
         * ctrl+x then y and enter  
     4. enable password base authentication ```vi /etc/ssh/sshd_config``` 
-    5. restart sshd ```systemctl restart sshd``` 
+    5. resgtart sshd ```systemctl restart sshd``` 
 
 ## establish master-slave connection
 
    1. go to master as jenkins user and copy keys into slave
         ```ssh-copy-id userslave@privateip```
    2. do setup on jenkins (manage jenkins --> managenodes -->new node)
-   
+    Go to Manage Jenkins
+    Manage nodes and clouds
+    New node
+    Enter the name and tick permanent agent ok
+        # No of executers - 2 or 3
+        Remote root directory- /home/maven
+        Labels- any name (assign this name in the master)
+        launch method - launch agents via ssh 
+            Host - Private ip address of the maven slave
+            Credentials- user name and password of the maven slave
+    Save.
