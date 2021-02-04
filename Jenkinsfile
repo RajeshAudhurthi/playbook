@@ -1,0 +1,42 @@
+node ('Maven-Slave') {
+    stage('scm') {
+    // some block
+    sh 'rm -rf game-of-life && git clone https://github.com/wakaleo/game-of-life.git'
+}
+    stage('build from maven') {
+    // some block
+    sh 'cd game-of-life && mvn package'
+}
+    stage('Junit results') {
+    // some block
+    junit 'game-of-life/gameoflife-web/target/surefire-reports/*.xml'
+}
+    stage('Archive the artifacts') {
+    // some block
+    archive 'game-of-life/gameoflife-web/target/*.war'
+}
+stage('Static Code analysis'){
+       // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
+    withSonarQubeEnv('sonar') {
+      // requires SonarQube Scanner for Maven 3.2+
+      sh 'cd game-of-life && mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+    }
+ }
+stage('Artifactory'){
+    sh "curl -u admin:Jfrog#77 -T /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/*.war http://65.0.7.196:8082/artifactory/gol1/gameoflife.war"
+}
+
+
+}
+node ('Ansible-Slave') {
+stage('ansible'){
+git 'https://github.com/RajeshAudhurthi/game_of_life.git'
+
+}
+stage('ansible-playbook'){
+sh 'ansible-playbook gol.yml'
+
+}
+}
+
+ 
