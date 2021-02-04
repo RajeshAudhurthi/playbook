@@ -25,13 +25,10 @@ stage('Static Code analysis'){
 stage('Artifactory'){
     sh "curl -u admin:Jfrog#77 -T /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/*.war http://65.0.7.196:8082/artifactory/gol1/gameoflife.war"
 }
-
-
 }
 node ('Ansible-Slave') {
 stage('ansible'){
 git 'https://github.com/RajeshAudhurthi/game_of_life.git'
-
 }
 stage('ansible-playbook'){
 sh 'ansible-playbook gol.yml'
