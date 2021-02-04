@@ -1,6 +1,6 @@
 - hosts: all
   become: yes
-    tasks: 
+  tasks: 
     - name: install tomcat
       apt: 
         name: tomcat8
@@ -8,7 +8,7 @@
         state: present
     - name: deploy war file 
       get_url:
-        url: http://65.0.7.196:8082/artifactory/artifactory-build-info/
+        url: http://65.0.7.196:8082/artifactory/gol1/gameoflife.war
         dest: /var/lib/tomcat8/webapps
         username: admin
         password: Jfrog#77

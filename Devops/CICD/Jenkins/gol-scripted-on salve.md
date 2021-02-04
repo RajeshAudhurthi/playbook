@@ -35,9 +35,8 @@ stage('Static Code analysis'){
 ###
 node('ansible') {
     stage('clone the playbook'){
-        git 'http://ansible-playbook.git'
-    }
+        sh 'git clone https://github.com/RajeshAudhurthi/playbook/gol.yml.git'
     stage('deploy'){
-        sh 'ansible-playbook -i myinv playbook.yml'
+        sh 'ansible-playbook -i gol.yml'
     }
 }
