@@ -10,6 +10,7 @@
     4. login into jenkins user ```su jenkins```
         * by default jenkins has no password
         * you can assign password to jenkins user
+            `compgen -u`  --> list of users
             `passwd jenkins`
             `systemctl restart sshd`
     5. generate keys ```ssh-keygen```
