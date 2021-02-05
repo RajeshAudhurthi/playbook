@@ -33,7 +33,7 @@
         * add this line `maven ALL=(ALL:ALL) NOPASSWD: ALL`
         * ctrl+x then y and enter  
     4. enable password base authentication ```vi /etc/ssh/sshd_config``` 
-    5. resgtart sshd ```systemctl restart sshd``` 
+    5. restart sshd ```systemctl restart sshd``` 
 
 ## establish master-slave connection
 
@@ -51,3 +51,5 @@
             Host - Private ip address of the maven slave
             Credentials- user name and password of the maven slave
     Save.
+
+

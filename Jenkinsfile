@@ -27,12 +27,11 @@ stage('Artifactory'){
 }
 }
 node ('Ansible-Slave') {
-stage('ansible'){
-git 'https://github.com/RajeshAudhurthi/game_of_life.git'
+    stage('ansible'){
+    git 'https://github.com/RajeshAudhurthi/game_of_life.git'
 }
-stage('ansible-playbook'){
-sh 'ansible-playbook gol.yml'
-
+    stage('ansible-playbook'){
+    sh 'ansible-playbook gol.yml'
 }
 }
 

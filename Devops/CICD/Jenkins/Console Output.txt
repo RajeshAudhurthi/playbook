@@ -1,0 +1,568 @@
+Started by user Rajesh
+Obtained Jenkinsfile from git https://github.com/RajeshAudhurthi/playbook.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Maven-Slave in /home/maven/workspace/gol11
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (scm)
+[Pipeline] sh
++ rm -rf game-of-life
++ git clone https://github.com/wakaleo/game-of-life.git
+Cloning into 'game-of-life'...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (build from maven)
+[Pipeline] sh
++ cd game-of-life
++ mvn package
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-build:jar:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-core:jar:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-web:war:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife:pom:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 302, column 40
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] gameoflife                                                         [pom]
+[[1;34mINFO[m] gameoflife-build                                                   [jar]
+[[1;34mINFO[m] gameoflife-core                                                    [jar]
+[[1;34mINFO[m] gameoflife-web                                                     [war]
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36mcom.wakaleo.gameoflife:gameoflife[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding gameoflife 1.0-SNAPSHOT                                   [1/4][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:1.0:enforce[m [1m(enforce-versions)[m @ [36mgameoflife[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.7.2.201409121644:prepare-agent[m [1m(jacoco-initialize)[m @ [36mgameoflife[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/maven/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/maven/workspace/gol11/game-of-life/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(unit-tests)[m @ [36mgameoflife[0;1m ---[m
+[[1;34mINFO[m] No tests to run.
+[[1;34mINFO[m] Surefire report directory: /home/maven/workspace/gol11/game-of-life/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-easyb-plugin:1.4:test[m [1m(default)[m @ [36mgameoflife[0;1m ---[m
+[[1;34mINFO[m] /home/maven/workspace/gol11/game-of-life/src/test/stories does not exists.  Skipping easyb testing
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36mcom.wakaleo.gameoflife:gameoflife-build[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding gameoflife-build 1.0-SNAPSHOT                             [2/4][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:1.0:enforce[m [1m(enforce-versions)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 2 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.7.2.201409121644:prepare-agent[m [1m(jacoco-initialize)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/maven/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/maven/workspace/gol11/game-of-life/gameoflife-build/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/maven/workspace/gol11/game-of-life/gameoflife-build/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(default-test)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(unit-tests)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] No tests to run.
+[[1;34mINFO[m] Surefire report directory: /home/maven/workspace/gol11/game-of-life/gameoflife-build/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-easyb-plugin:1.4:test[m [1m(default)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] /home/maven/workspace/gol11/game-of-life/gameoflife-build/src/test/stories does not exists.  Skipping easyb testing
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:2.4:jar[m [1m(default-jar)[m @ [36mgameoflife-build[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/maven/workspace/gol11/game-of-life/gameoflife-build/target/gameoflife-build-1.0-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36mcom.wakaleo.gameoflife:gameoflife-core[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding gameoflife-core 1.0-SNAPSHOT                              [3/4][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:1.0:enforce[m [1m(enforce-versions)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/maven/workspace/gol11/game-of-life/gameoflife-core/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.7.2.201409121644:prepare-agent[m [1m(jacoco-initialize)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/maven/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/maven/workspace/gol11/game-of-life/gameoflife-core/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 5 source files to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/maven/workspace/gol11/game-of-life/gameoflife-core/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 10 source files to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(default-test)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(unit-tests)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.wakaleo.gameoflife.domain.WhenYouReadAGridFromAString
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.365 sec
+Running com.wakaleo.gameoflife.domain.WhenYouCreateACell
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 sec
+Running com.wakaleo.gameoflife.domain.WhenYouCreateANewUniverse
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 sec
+Running com.wakaleo.gameoflife.domain.WhenYouPrintAGrid
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+Running com.wakaleo.gameoflife.domain.WhenYouCreateAGrid
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 sec
+Running com.wakaleo.gameoflife.domain.WhenYouPlayTheGameOfLife
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+
+Results :
+
+Tests run: 49, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-easyb-plugin:1.4:test[m [1m(default)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Using easyb dependency org.easyb:easyb-core:jar:1.6:compile
+[[1;34mINFO[m] Using easyb dependency org.easyb:easyb-composite-groovy:pom:1.2:compile
+[[1;34mINFO[m] Using easyb dependency org.codehaus.groovy:groovy-all:jar:2.3.6:compile
+[[1;34mINFO[m] Using easyb dependency org.easyb:easyb-ast:jar:1.1:compile
+[[1;34mINFO[m] Using easyb dependency commons-cli:commons-cli:jar:1.2:compile
+[[1;34mINFO[m] Using easyb dependency commons-lang:commons-lang:jar:2.5:compile
+     [java] Running counting things story (/home/maven/workspace/gol11/game-of-life/gameoflife-core/src/test/stories/CountingThings.story)
+     [java] Scenarios run: 1, Failures: 0, Pending: 0, Time elapsed: 0.792 sec
+     [java] Running multiplying things story (/home/maven/workspace/gol11/game-of-life/gameoflife-core/src/test/stories/MultiplyingThings.story)
+     [java] Scenarios run: 1, Failures: 0, Pending: 1, Time elapsed: 0.067 sec
+     [java] 2 total behaviors ran with no failures
+     [java] Writing JUnit report to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports/TEST-behavior.CountingThings.xml
+     [java] JUnit report written to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports/TEST-behavior.CountingThings.xml
+     [java] Writing JUnit report to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports/TEST-behavior.MultiplyingThings.xml
+     [java] JUnit report written to /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports/TEST-behavior.MultiplyingThings.xml
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:2.4:jar[m [1m(default-jar)[m @ [36mgameoflife-core[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/gameoflife-core-1.0-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36mcom.wakaleo.gameoflife:gameoflife-web[0;1m >----------------[m
+[[1;34mINFO[m] [1mBuilding gameoflife-web 1.0-SNAPSHOT                               [4/4][m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:1.0:enforce[m [1m(enforce-versions)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.7.2.201409121644:prepare-agent[m [1m(jacoco-initialize)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/maven/.m2/repository/org/jacoco/org.jacoco.agent/0.7.2.201409121644/org.jacoco.agent-0.7.2.201409121644-runtime.jar=destfile=/home/maven/workspace/gol11/game-of-life/gameoflife-web/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 2 source files to /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/maven/workspace/gol11/game-of-life/gameoflife-web/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 3 source files to /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(default-test)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Tests are skipped.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.11:test[m [1m(unit-tests)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.wakaleo.gameoflife.webtests.controllers.WhenDisplayingTheHomePage
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.261 sec
+Running com.wakaleo.gameoflife.webtests.controllers.WhenSpawningANewGeneration
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.6 sec
+Running com.wakaleo.gameoflife.webtests.controllers.WhenCreatingANewGame
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 sec
+
+Results :
+
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-easyb-plugin:1.4:test[m [1m(default)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] /home/maven/workspace/gol11/game-of-life/gameoflife-web/src/test/stories does not exists.  Skipping easyb testing
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-war-plugin:2.1.1:war[m [1m(default-war)[m @ [36mgameoflife-web[0;1m ---[m
+[[1;34mINFO[m] Packaging webapp
+[[1;34mINFO[m] Assembling webapp [gameoflife-web] in [/home/maven/workspace/gol11/game-of-life/gameoflife-web/target/gameoflife]
+[[1;34mINFO[m] Processing war project
+[[1;34mINFO[m] Copying webapp resources [/home/maven/workspace/gol11/game-of-life/gameoflife-web/src/main/webapp]
+[[1;34mINFO[m] Webapp assembled in [91 msecs]
+[[1;34mINFO[m] Building war: /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/gameoflife.war
+[[1;34mINFO[m] WEB-INF/web.xml already added, skipping
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for gameoflife 1.0-SNAPSHOT:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] gameoflife ......................................... [1;32mSUCCESS[m [  4.004 s]
+[[1;34mINFO[m] gameoflife-build ................................... [1;32mSUCCESS[m [  1.951 s]
+[[1;34mINFO[m] gameoflife-core .................................... [1;32mSUCCESS[m [  8.495 s]
+[[1;34mINFO[m] gameoflife-web ..................................... [1;32mSUCCESS[m [  3.190 s]
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  18.440 s
+[[1;34mINFO[m] Finished at: 2021-02-04T11:14:46Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Junit results)
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Archive the artifacts)
+[Pipeline] archive
+The archive step is deprecated, please use archiveArtifacts instead.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Static Code analysis)
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonar
+[Pipeline] {
+[Pipeline] sh
++ cd game-of-life
++ mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-build:jar:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-core:jar:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife-web:war:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for com.wakaleo.gameoflife:gameoflife:pom:1.0-SNAPSHOT
+[[1;33mWARNING[m] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 302, column 40
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] gameoflife                                                         [pom]
+[[1;34mINFO[m] gameoflife-build                                                   [jar]
+[[1;34mINFO[m] gameoflife-core                                                    [jar]
+[[1;34mINFO[m] gameoflife-web                                                     [war]
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36mcom.wakaleo.gameoflife:gameoflife[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding gameoflife 1.0-SNAPSHOT                                   [1/4][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;33mWARNING[m] The following dependencies could not be resolved at this point of the build but seem to be part of the reactor:
+[[1;33mWARNING[m] o com.wakaleo.gameoflife:gameoflife-core:jar:1.0-SNAPSHOT (compile)
+[[1;33mWARNING[m] Try running the build up to the lifecycle phase "package"
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32msonar-maven-plugin:3.2:sonar[m [1m(default-cli)[m @ [36mgameoflife[0;1m ---[m
+[[1;34mINFO[m] User cache: /home/maven/.sonar/cache
+[[1;34mINFO[m] Publish mode
+[[1;34mINFO[m] Load global settings
+[[1;34mINFO[m] Load global settings (done) | time=160ms
+[[1;34mINFO[m] Server id: AXdnXtVgFKrjpqu5tMYx
+[[1;34mINFO[m] User cache: /home/maven/.sonar/cache
+[[1;34mINFO[m] Load plugins index
+[[1;34mINFO[m] Load plugins index (done) | time=98ms
+[[1;34mINFO[m] SonarQube version: 6.7.4
+[[1;34mINFO[m] Default locale: "en", source code encoding: "UTF-8"
+[[1;34mINFO[m] Process project properties
+[[1;34mINFO[m] Load project repositories
+[[1;34mINFO[m] Load project repositories (done) | time=133ms
+[[1;34mINFO[m] Load quality profiles
+[[1;34mINFO[m] Load quality profiles (done) | time=116ms
+[[1;34mINFO[m] Load active rules
+[[1;34mINFO[m] Load active rules (done) | time=861ms
+[[1;34mINFO[m] Load metrics repository
+[[1;34mINFO[m] Load metrics repository (done) | time=85ms
+[[1;34mINFO[m] Project key: com.wakaleo.gameoflife:gameoflife
+[[1;34mINFO[m] -------------  Scan gameoflife-build
+[[1;34mINFO[m] Load server rules
+[[1;34mINFO[m] Load server rules (done) | time=135ms
+[[1;34mINFO[m] Base dir: /home/maven/workspace/gol11/game-of-life/gameoflife-build
+[[1;34mINFO[m] Working dir: /home/maven/workspace/gol11/game-of-life/gameoflife-build/target/sonar
+[[1;34mINFO[m] Source paths: pom.xml
+[[1;34mINFO[m] Source encoding: UTF-8, default locale: en
+[[1;34mINFO[m] Index files
+[[1;34mINFO[m] 1 file indexed
+[[1;34mINFO[m] Quality profile for xml: Sonar way
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java]
+[[1;34mINFO[m] 1 source files to be analyzed
+[[1;34mINFO[m] 1/1 source files have been analyzed
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java] (done) | time=863ms
+[[1;34mINFO[m] Sensor XML Sensor [xml]
+[[1;34mINFO[m] Sensor XML Sensor [xml] (done) | time=273ms
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php]
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php] (done) | time=7ms
+[[1;34mINFO[m] -------------  Scan gameoflife-core
+[[1;34mINFO[m] Base dir: /home/maven/workspace/gol11/game-of-life/gameoflife-core
+[[1;34mINFO[m] Working dir: /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/sonar
+[[1;34mINFO[m] Source paths: pom.xml, src/main/java
+[[1;34mINFO[m] Test paths: src/test/java
+[[1;34mINFO[m] Source encoding: UTF-8, default locale: en
+[[1;34mINFO[m] Index files
+[[1;34mINFO[m] 17 files indexed
+[[1;34mINFO[m] Quality profile for java: Sonar way
+[[1;34mINFO[m] Quality profile for xml: Sonar way
+[[1;34mINFO[m] Sensor JavaSquidSensor [java]
+[[1;34mINFO[m] Configured Java source version (sonar.java.source): 7
+[[1;34mINFO[m] JavaClasspath initialization
+[[1;33mWARNING[m] Bytecode of dependencies was not provided for analysis of source files, you might end up with less precise results. Bytecode can be provided using sonar.java.libraries property
+[[1;34mINFO[m] JavaClasspath initialization (done) | time=10ms
+[[1;34mINFO[m] JavaTestClasspath initialization
+[[1;34mINFO[m] JavaTestClasspath initialization (done) | time=1ms
+[[1;34mINFO[m] Java Main Files AST scan
+[[1;34mINFO[m] 5 source files to be analyzed
+[[1;34mINFO[m] 5/5 source files have been analyzed
+[[1;34mINFO[m] Java Main Files AST scan (done) | time=2592ms
+[[1;34mINFO[m] Java Test Files AST scan
+[[1;34mINFO[m] 10 source files to be analyzed
+[[1;34mINFO[m] 10/10 source files have been analyzed
+[[1;34mINFO[m] Java Test Files AST scan (done) | time=727ms
+[[1;34mINFO[m] Sensor JavaSquidSensor [java] (done) | time=4268ms
+[[1;34mINFO[m] Sensor SurefireSensor [java]
+[[1;34mINFO[m] Property 'sonar.junit.reportsPath' is deprecated. Use property 'sonar.junit.reportPaths' instead.
+[[1;34mINFO[m] parsing [/home/maven/workspace/gol11/game-of-life/gameoflife-core/target/surefire-reports]
+[[1;34mINFO[m] Sensor SurefireSensor [java] (done) | time=84ms
+[[1;34mINFO[m] Sensor JaCoCoSensor [java]
+[[1;33mWARNING[m] You are not using the latest JaCoCo binary format version, please consider upgrading to latest JaCoCo version.
+[[1;34mINFO[m] Analysing /home/maven/workspace/gol11/game-of-life/gameoflife-core/target/jacoco.exec
+[[1;34mINFO[m] No information about coverage per test.
+[[1;34mINFO[m] Sensor JaCoCoSensor [java] (done) | time=164ms
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java]
+[[1;34mINFO[m] 1 source files to be analyzed
+[[1;34mINFO[m] 1/1 source files have been analyzed
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java] (done) | time=278ms
+[[1;34mINFO[m] Sensor XML Sensor [xml]
+[[1;34mINFO[m] Sensor XML Sensor [xml] (done) | time=37ms
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php]
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php] (done) | time=0ms
+[[1;34mINFO[m] -------------  Scan gameoflife-web
+[[1;34mINFO[m] Base dir: /home/maven/workspace/gol11/game-of-life/gameoflife-web
+[[1;34mINFO[m] Working dir: /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/sonar
+[[1;34mINFO[m] Source paths: src/main/webapp, pom.xml, src/main/java
+[[1;34mINFO[m] Test paths: src/test/java
+[[1;34mINFO[m] Source encoding: UTF-8, default locale: en
+[[1;34mINFO[m] Index files
+[[1;34mINFO[m] 13 files indexed
+[[1;34mINFO[m] Quality profile for java: Sonar way
+[[1;34mINFO[m] Quality profile for xml: Sonar way
+[[1;34mINFO[m] Sensor JavaSquidSensor [java]
+[[1;34mINFO[m] Configured Java source version (sonar.java.source): 7
+[[1;34mINFO[m] JavaClasspath initialization
+[[1;34mINFO[m] JavaClasspath initialization (done) | time=2ms
+[[1;34mINFO[m] JavaTestClasspath initialization
+[[1;34mINFO[m] JavaTestClasspath initialization (done) | time=0ms
+[[1;34mINFO[m] Java Main Files AST scan
+[[1;34mINFO[m] 2 source files to be analyzed
+[[1;34mINFO[m] 2/2 source files have been analyzed
+[[1;34mINFO[m] Java Main Files AST scan (done) | time=355ms
+[[1;34mINFO[m] Java Test Files AST scan
+[[1;34mINFO[m] 3 source files to be analyzed
+[[1;34mINFO[m] 3/3 source files have been analyzed
+[[1;33mWARNING[m] Classes not found during the analysis : [com.wakaleo.gameoflife.domain.Universe]
+[[1;34mINFO[m] Java Test Files AST scan (done) | time=201ms
+[[1;34mINFO[m] Sensor JavaSquidSensor [java] (done) | time=587ms
+[[1;34mINFO[m] Sensor SurefireSensor [java]
+[[1;34mINFO[m] Property 'sonar.junit.reportsPath' is deprecated. Use property 'sonar.junit.reportPaths' instead.
+[[1;34mINFO[m] parsing [/home/maven/workspace/gol11/game-of-life/gameoflife-web/target/surefire-reports]
+[[1;34mINFO[m] Sensor SurefireSensor [java] (done) | time=16ms
+[[1;34mINFO[m] Sensor JaCoCoSensor [java]
+[[1;33mWARNING[m] You are not using the latest JaCoCo binary format version, please consider upgrading to latest JaCoCo version.
+[[1;34mINFO[m] Analysing /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/jacoco.exec
+[[1;34mINFO[m] No information about coverage per test.
+[[1;34mINFO[m] Sensor JaCoCoSensor [java] (done) | time=20ms
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java]
+[[1;34mINFO[m] 3 source files to be analyzed
+[[1;34mINFO[m] 3/3 source files have been analyzed
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java] (done) | time=242ms
+[[1;34mINFO[m] Sensor XML Sensor [xml]
+[[1;34mINFO[m] Sensor XML Sensor [xml] (done) | time=103ms
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php]
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php] (done) | time=0ms
+[[1;34mINFO[m] -------------  Scan gameoflife
+[[1;34mINFO[m] Base dir: /home/maven/workspace/gol11/game-of-life
+[[1;34mINFO[m] Working dir: /home/maven/workspace/gol11/game-of-life/target/sonar
+[[1;34mINFO[m] Source paths: pom.xml
+[[1;34mINFO[m] Source encoding: UTF-8, default locale: en
+[[1;34mINFO[m] Index files
+[[1;34mINFO[m] 1 file indexed
+[[1;34mINFO[m] Quality profile for xml: Sonar way
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java]
+[[1;34mINFO[m] 1 source files to be analyzed
+[[1;34mINFO[m] 1/1 source files have been analyzed
+[[1;34mINFO[m] Sensor SonarJavaXmlFileSensor [java] (done) | time=286ms
+[[1;34mINFO[m] Sensor XML Sensor [xml]
+[[1;34mINFO[m] Sensor XML Sensor [xml] (done) | time=76ms
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php]
+[[1;34mINFO[m] Sensor Analyzer for "php.ini" files [php] (done) | time=1ms
+[[1;34mINFO[m] Sensor Zero Coverage Sensor
+[[1;34mINFO[m] Sensor Zero Coverage Sensor (done) | time=52ms
+[[1;34mINFO[m] Sensor CPD Block Indexer
+[[1;34mINFO[m] Sensor CPD Block Indexer (done) | time=73ms
+[[1;34mINFO[m] 1 file had no CPD blocks
+[[1;34mINFO[m] Calculating CPD for 6 files
+[[1;34mINFO[m] CPD calculation finished
+[[1;34mINFO[m] Analysis report generated in 305ms, dir size=185 KB
+[[1;34mINFO[m] Analysis reports compressed in 120ms, zip size=81 KB
+[[1;34mINFO[m] Analysis report uploaded in 30ms
+[[1;34mINFO[m] ANALYSIS SUCCESSFUL, you can browse http://65.0.61.2:9000/dashboard/index/com.wakaleo.gameoflife:gameoflife
+[[1;34mINFO[m] Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[[1;34mINFO[m] More about the report processing at http://65.0.61.2:9000/api/ce/task?id=AXdswL4Mc4D_p1PGdw3P
+[[1;34mINFO[m] Task total time: 12.761 s
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary for gameoflife 1.0-SNAPSHOT:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] gameoflife ......................................... [1;32mSUCCESS[m [ 16.010 s]
+[[1;34mINFO[m] gameoflife-build ................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] gameoflife-core .................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] gameoflife-web ..................................... [1;33mSKIPPED[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  16.811 s
+[[1;34mINFO[m] Finished at: 2021-02-04T11:15:07Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Artifactory)
+[Pipeline] sh
++ curl -u admin:Jfrog#77 -T /home/maven/workspace/gol11/game-of-life/gameoflife-web/target/gameoflife.war http://65.0.7.196:8082/artifactory/gol1/gameoflife.war
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 3118k  100   650  100 3117k   5855  27.4M --:--:-- --:--:-- --:--:-- 27.4M
+{
+  "repo" : "gol1",
+  "path" : "/gameoflife.war",
+  "created" : "2021-02-03T17:28:10.961Z",
+  "createdBy" : "admin",
+  "downloadUri" : "http://65.0.7.196:8082/artifactory/gol1/gameoflife.war",
+  "mimeType" : "application/java-archive",
+  "size" : "3192481",
+  "checksums" : {
+    "sha1" : "64377e34cf51eab8c58db82d894ac119564a0066",
+    "md5" : "fa47e1c0524754cb40ec5a2803654fc3",
+    "sha256" : "4fb9381e46c87741d4397dc033c6559f86b0e8d1abb98dcc7908290b812d783b"
+  },
+  "originalChecksums" : {
+    "sha256" : "4fb9381e46c87741d4397dc033c6559f86b0e8d1abb98dcc7908290b812d783b"
+  },
+  "uri" : "http://65.0.7.196:8082/artifactory/gol1/gameoflife.war"
+}
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] node
+Running on Ansible-Slave in /home/ansible/workspace/gol11
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (ansible)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Fetching changes from the remote Git repository
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/RajeshAudhurthi/game_of_life.git # timeout=10
+Fetching upstream changes from https://github.com/RajeshAudhurthi/game_of_life.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.17.1'
+ > git fetch --tags --progress -- https://github.com/RajeshAudhurthi/game_of_life.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision a470ef2702320cfd0b29b69218d4e54dc6008774 (refs/remotes/origin/master)
+Commit message: "all"
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a470ef2702320cfd0b29b69218d4e54dc6008774 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master a470ef2702320cfd0b29b69218d4e54dc6008774 # timeout=10
+ > git rev-list --no-walk c5a1d35856eb6fbdf214d2e115f5a63fd2f9d749 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (ansible-playbook)
+[Pipeline] sh
++ ansible-playbook gol.yml
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [172.31.12.20]
+
+TASK [install tomcat] **********************************************************
+changed: [172.31.12.20]
+
+TASK [deploy war file] *********************************************************
+changed: [172.31.12.20]
+
+PLAY RECAP *********************************************************************
+172.31.12.20               : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

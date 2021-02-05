@@ -14,6 +14,6 @@
             url: http://34.221.225.179:8082/artifactory/gol/gameoflife.war
             dest: /var/lib/tomcat8/webapps
             username: admin
-            password: devops123
+            password: Jfrog#77
       ```
  * this playbook push to github along with myinv file
