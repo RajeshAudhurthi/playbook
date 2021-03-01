@@ -1,0 +1,62 @@
+sudo apt update
+sudo apt install apache2
+sudo apt install php libapache2-mod-php php-mysql
+sudo systemctl restart apache2
+sudo nano /var/www/html/info.php 
+
+<?php
+phpinfo();
+?>
+
+
+
+
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: apache2 and packages installation
+    apt: 
+      name: ["apache2", "php", "libapache2-mod-php", "php-mysql"]
+      update_cache: yes
+      state: present
+  - name: restart
+    service:
+      name: apache2
+      state: restarted
+  - name: copy file
+    copy:
+      src: info.php
+      dest: /var/www/html/info.php
+
+
+---
+- hosts: all
+  become: yes
+  tasks: 
+    - name: update and installing apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: installing packages
+      apt:
+        name: ["php", "libapache2-mod-php", "php-mysql"]
+        state: present
+    - name: restarting apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: copy file from ACS to all nodes 
+      copy: 
+        src: /home/ansible/info.php
+        dest: /var/www/html/info.php 
+    - name: restart apache2 again 
+      service: 
+        name: apache2 
+        state: restarted
+
+
+  
+  
